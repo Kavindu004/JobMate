@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 <header class="site-nav">
@@ -102,6 +103,131 @@
         <span class="live-tag">Plumber</span>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="trades">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="kicker">Everything You Need on JobMate</span>
+        <h2>Connecting skilled professionals with clients seamlessly.</h2>
+      </div>
+    </div>
+  
+   <div class="container">
+
+    <!-- 3x3 Feature Grid -->
+    <div class="feature-grid">
+
+      <!-- 1. Find Skilled Workers (Clients) -->
+      <div class="feature-card bg-purple">
+        <div class="icon-box text-purple">
+          <i class="fa-solid fa-user-gear fa-lg"></i>
+        </div>
+        <h3>Find Skilled Workers</h3>
+        <p>Find verified workers by skill, location, and availability.</p>
+      </div>
+
+      <!-- 2. Post a Job in Minutes (Clients) -->
+      <div class="feature-card bg-yellow">
+        <div class="icon-box text-yellow">
+          <i class="fa-solid fa-pen-to-square fa-lg"></i>
+        </div>
+        <h3>Post a Job in Minutes</h3>
+        <p>Post your job, set a budget, and hire nearby workers.</p>
+      </div>
+
+      <!-- 3. Ratings & Reviews (Clients) -->
+      <div class="feature-card bg-teal">
+        <div class="icon-box text-teal">
+          <i class="fa-solid fa-star fa-lg"></i>
+        </div>
+        <h3>Ratings & Reviews</h3>
+        <p>Check ratings and reviews before you hire.</p>
+      </div>
+
+      <!-- 4. Browse Job Opportunities (Workers) -->
+      <div class="feature-card bg-blue">
+        <div class="icon-box text-blue">
+          <i class="fa-solid fa-briefcase fa-lg"></i>
+        </div>
+        <h3>Browse Job Opportunities</h3>
+        <p>See jobs posted near you that match your skills and apply in one tap.</p>
+      </div>
+
+      <!-- 5. Build Your Worker Profile (Workers) -->
+      <div class="feature-card bg-pink">
+        <div class="icon-box text-pink">
+          <i class="fa-solid fa-id-card fa-lg"></i>
+        </div>
+        <h3>Build Your Worker Profile</h3>
+        <p>Showcase your skills and past work.</p>
+      </div>
+
+      <!-- 6. Job Alerts (Workers) -->
+      <div class="feature-card bg-sky">
+        <div class="icon-box text-sky">
+          <i class="fa-solid fa-bell fa-lg"></i>
+        </div>
+        <h3>Job Alerts</h3>
+        <p>Get notified instantly when a new job matching your skillset is posted nearby.</p>
+      </div>
+
+      <!-- 7. In-App Chat (Shared) -->
+      <div class="feature-card bg-mint">
+        <div class="icon-box text-mint">
+          <i class="fa-solid fa-comments fa-lg"></i>
+        </div>
+        <h3>In-App Chat</h3>
+        <p>Chat directly to discuss jobs, prices, and schedules.</p>
+      </div>
+
+      <!-- 8. Secure Payments (Shared) -->
+      <div class="feature-card bg-orange">
+        <div class="icon-box text-orange">
+          <i class="fa-solid fa-shield-halved fa-lg"></i>
+        </div>
+        <h3>Secure Payments</h3>
+        <p>Secure payments with milestone-based release.</p>
+      </div>
+
+      <!-- 9. Location-Based Matching (Shared) -->
+      <div class="feature-card bg-green">
+        <div class="icon-box text-green">
+          <i class="fa-solid fa-location-dot fa-lg"></i>
+        </div>
+        <h3>Location-Based Matching</h3>
+        <p>Find nearby workers and jobs with map view.</p>
+      </div>
+
+    </div>
+   </div>
+  </div>
+</section>
+
+<section id="browse">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="kicker">Available now</span>
+        <h2>Meet the pros</h2>
+      </div>
+      <p>Every profile shows verified experience, real customer reviews, and finished work - so you know exactly who you're hiring before you call.</p>
+    </div>
+
+    <div class="filter-pills reveal" id="filterPills"></div>
+
+    <div class="pro-toolbar reveal">
+      <div class="count-line"><strong id="resultCount">0</strong> pros match your search</div>
+      <select class="sort-select" id="sortSelect">
+        <option value="rating">Sort: Highest rated</option>
+        <option value="experience">Sort: Most experienced</option>
+        <option value="reviews">Sort: Most reviewed</option>
+      </select>
+    </div>
+
+    <div class="pro-grid reveal" id="proGrid"></div>
   </div>
 </section>
 </body>
