@@ -21,6 +21,7 @@
     <nav class="nav-links" id="navLinks">
       <a href="#trades">Trades</a>
       <a href="#browse">Find a pro</a>
+      <a href="#jobs">Jobs</a>
       <a href="#how">How it works</a>
       <a href="#reviews">Reviews</a>
     </nav>
@@ -230,5 +231,88 @@
     <div class="pro-grid reveal" id="proGrid"></div>
   </div>
 </section>
+
+<section id="jobs">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="kicker">Hiring now</span><h2>Open jobs</h2></div></div>
+    <div class="two-col">
+      <div>
+        <div class="pro-toolbar"><div class="count-line"><strong id="jobCount">0</strong> open jobs</div>
+          <select class="sort-select" id="jobTrade" aria-label="Filter jobs by trade"></select></div>
+        <div class="job-grid" id="jobGrid" style="grid-template-columns:1fr;"></div>
+      </div>
+      <form class="form-card" id="jobForm" novalidate>
+        <h3>Need a worker? Post a job</h3>
+        <p class="sub">Describe the work. Matching pros can apply, and you choose who to hire.</p>
+        <div class="form-grid">
+          <div class="f full"><label for="jTitle">Job title</label><input id="jTitle" placeholder="e.g. Rewire a two-bedroom house"></div>
+          <div class="f"><label for="jTrade">Trade needed</label><select id="jTradeSel"></select></div>
+          <div class="f"><label for="jLoc">Location</label><input id="jLoc" placeholder="Town or postcode"></div>
+          <div class="f"><label for="jBudget">Budget (Rs.)</label><input id="jBudget" type="number" min="0" placeholder="25000"></div>
+          <div class="f"><label for="jName">Your name</label><input id="jName"></div>
+          <div class="f full"><label for="jContact">Phone or email</label><input id="jContact"></div>
+          <div class="f full"><label for="jDesc">Details</label><textarea id="jDesc" placeholder="Scope, timeline, anything the worker should know"></textarea></div>
+        </div>
+        <div class="err" id="jobErr"></div>
+        <button class="btn btn-primary" type="submit">Post job</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="kicker">How it works</span><h2>Hired in four steps</h2></div></div>
+    <div class="steps">
+      <div class="step"><h3>Register or post</h3><p>Workers create a profile with their trade, skills and experience. Clients post a job.</p></div>
+      <div class="step"><h3>Get matched</h3><p>Jobs show up for workers with the same trade. Clients can search pros by trade and location.</p></div>
+      <div class="step"><h3>Apply and choose</h3><p>Matching workers apply. Clients review applicants and select the right person.</p></div>
+      <div class="step"><h3>Review the work</h3><p>After the job, leave a rating so the next client knows who to trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-strip" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal"><div><span class="kicker" >Reviews</span><h2 style="color:var(--paper);">What clients say</h2></div></div>
+    <div class="review-grid" id="reviewGrid"></div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="join-cta reveal">
+      <div>
+        <h2>Are you a tradesperson?</h2>
+        <p>Build a profile, show off your finished work, and let customers come to you. No commission on jobs you land.</p>
+      </div>
+      <a href="#" class="btn btn-primary" id="joinBtn">Create your profile</a>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap" style="max-width:720px;">
+    <form class="form-card" id="joinForm" novalidate>
+      <h3>List your trade</h3>
+      <p class="sub">Register your skills and experience. You will appear in search and can apply to jobs that match your trade.</p>
+      <div class="form-grid">
+        <div class="f"><label for="rName">Full name</label><input id="rName" autocomplete="name"></div>
+        <div class="f"><label for="rTrade">Trade</label><select id="rTrade"></select></div>
+        <div class="f"><label for="rLoc">Location</label><input id="rLoc" placeholder="Town or postcode"></div>
+        <div class="f"><label for="rExp">Years of experience</label><input id="rExp" type="number" min="0" max="60"></div>
+        <div class="f"><label for="rPhone">Phone</label><input id="rPhone" type="tel"></div>
+        <div class="f"><label for="rEmail">Email</label><input id="rEmail" type="email"></div>
+        <div class="f full"><label for="rSkills">Skills (comma separated)</label><input id="rSkills" placeholder="e.g. Wiring, Fuse boards, Solar install"></div>
+        <div class="f full"><label for="rBio">About your work</label><textarea id="rBio"></textarea></div>
+      </div>
+      <div class="err" id="joinErr"></div>
+      <button class="btn btn-primary" type="submit">Create my profile</button>
+    </form>
+  </div>
+</section>
+<div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true"><button class="x" id="modalX" aria-label="Close">&times;</button><div id="modalBody"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
 </body>
 </html>
