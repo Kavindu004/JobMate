@@ -25,8 +25,10 @@
       <a href="#how">How it works</a>
       <a href="#reviews">Reviews</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:14px;">
-      <a href="#join" class="btn btn-outline nav-cta">List your trade</a>
+    <div style="display:flex;align-items:center;gap:14px;" id="authNavButtons">
+      <!-- Dynamically managed by JavaScript based on login state -->
+      <a href="login.html" class="btn btn-outline nav-cta">Login</a>
+      <a href="signup.html" class="btn btn-primary nav-cta">Sign Up</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -311,6 +313,52 @@
     </form>
   </div>
 </section>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:var(--paper);margin-bottom:14px;">
+          <span class="mark" style="background:var(--amber);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#12213F" stroke-width="2"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg>
+          </span>
+          Handworks
+        </div>
+        <p style="max-width:260px;color:#9FADC4;">Connecting people with skilled, reliable tradespeople since day one.</p>
+      </div>
+      <div>
+        <h4>Trades</h4>
+        <a href="#trades">Mason</a>
+        <a href="#trades">Electrician</a>
+        <a href="#trades">Plumber</a>
+        <a href="#trades">Carpenter</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#how">How it works</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#join">For professionals</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">Help centre</a>
+        <a href="#">Safety &amp; trust</a>
+        <a href="#">Contact us</a>
+      </div>
+      <div>
+        <h4>Stay Updated</h4>
+        <p style="color:#9FADC4;font-size:13px;margin:0 0 12px;">New pros and hiring tips in your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit" class="btn btn-primary" style="padding:9px 16px;">Go</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Handworks. All rights reserved.</span>
+      <span>Built for people who need something fixed, built, or made.</span>
+    </div>
+  </div>
+</footer>
 <div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true"><button class="x" id="modalX" aria-label="Close">&times;</button><div id="modalBody"></div></div></div>
 <div class="toast" id="toast" role="status"></div>
 <script src="app.js"></script>
