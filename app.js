@@ -7,7 +7,7 @@ let jobTradeFilter = '';
 
 /* selects */
 const opts = (first) => (first ? `<option value="">${first}</option>` : '') + TRADES.map(t => `<option>${t}</option>`).join('');
-$('rTrade').innerHTML = opts(); $('jTradeSel').innerHTML = opts(); $('jobTrade').innerHTML = opts('All trades');
+$('jTradeSel').innerHTML = opts(); $('jobTrade').innerHTML = opts('All trades');
 
 /* pros */
 function renderPills() {
@@ -55,21 +55,6 @@ $('searchForm').onsubmit = e => {
 };
 $('sortSelect').onchange = e => { f.sort = e.target.value; renderPros(); };
 $('jobTrade').onchange = e => { jobTradeFilter = e.target.value; renderJobs(); };
-
-$('joinForm').onsubmit = e => {
-  e.preventDefault();
-  const v = id => $(id).value.trim();
-  const name = v('rName'), loc = v('rLoc'), exp = parseInt($('rExp').value, 10), phone = v('rPhone'), email = v('rEmail');
-  const skills = v('rSkills').split(',').map(s => s.trim()).filter(Boolean);
-  const err = m => { $('joinErr').textContent = m; };
-  if (!name || !loc || !skills.length) return err('Enter your name, location and at least one skill.');
-  if (isNaN(exp) || exp < 0) return err('Enter your years of experience (0 or more).');
-  if (!phone && !email) return err('Add a phone number or email so clients can reach you.');
-  if (email && !/^\S+@\S+\.\S+$/.test(email)) return err('That email address looks incomplete.');
-  S.pros.unshift({id:uid(), registered:true, name, trade:$('rTrade').value, location:loc, exp, rating:0, count:0, phone, email, skills, bio:v('rBio') || 'New on JobMate.'});
-  save(); e.target.reset(); err(''); f.trade = ''; f.loc = ''; f.sort = 'rating'; $('searchTrade').value = ''; $('searchLocation').value = '';
-  renderAll(); toast('Profile created. You can now apply to matching jobs.'); $('browse').scrollIntoView({behavior:'smooth'});
-};
 
 $('jobForm').onsubmit = e => {
   e.preventDefault();

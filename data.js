@@ -1,3 +1,6 @@
+// Shared data, modals and card templates used by index.html, all-pros.html and all-jobs.html.
+// Data is kept in sessionStorage so it follows you between pages. Refreshing a page (F5) resets it to the sample data.
+// Later: replace load/save with fetch() calls to your backend.
 const JM = (() => {
 const KEY = 'jobmate_data';
 const TRADES = ['Mason','Electrician','Plumber','Carpenter','Painter','Welder','Roofer','Landscaper'];
@@ -138,7 +141,6 @@ const jobCard = j => {
         ${j.hired ? '' : `<button class="btn btn-primary" data-apply="${j.id}">Apply</button>`}
         <button class="btn btn-outline" data-apps="${j.id}">Applicants (${j.apps.length})</button>
         <button class="btn btn-outline" data-match="${j.id}">Find pros</button>
-        <button class="btn btn-outline" data-del="${j.id}" style="color:#b3261e;border-color:#b3261e">Delete</button>
       </div></article>`;
 };
 const moreTile = (href, cls = '') => `<a class="more-tile ${cls}" href="${href}"><span class="more-arrow">&rsaquo;</span><span>View more</span></a>`;
@@ -149,10 +151,6 @@ document.addEventListener('click', e => {
   if (t.dataset.view) proModal(t.dataset.view);
   if (t.dataset.apply) applyModal(t.dataset.apply);
   if (t.dataset.apps) appsModal(t.dataset.apps);
-  if (t.dataset.del) {
-    const j = S.jobs.find(x => x.id === t.dataset.del);
-    if (j && confirm('Delete the job "' + j.title + '"? This cannot be undone.')) { S.jobs = S.jobs.filter(x => x.id !== j.id); save(); rerender(); toast('Job deleted'); }
-  }
   if (t.dataset.hire) {
     const [jid, pid] = t.dataset.hire.split('|'); const j = S.jobs.find(x => x.id === jid); const a = j.apps.find(x => x.proId === pid);
     j.hired = {proId:pid, name:a.name}; save(); rerender(); closeModal(); toast(a.name + ' selected for this job');

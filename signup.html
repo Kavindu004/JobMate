@@ -70,7 +70,8 @@
             </div>
 
             <!-- Conditional Fields for Workers -->
-            <div class="f worker-field"><label for="sTrade">Trade</label><select id="sTrade"></select></div>
+            <div class="f worker-field"><label for="sTrade">Trade</label><select id="sTrade"><option>Mason</option><option>Electrician</option><option>Plumber</option><option>Carpenter</option><option>Painter</option><option>Welder</option><option>Roofer
+</option><option>Landscaper</option></select></div>
             <div class="f worker-field"><label for="sLoc">Location</label><input id="sLoc" placeholder="Town or City"></div>
             <div class="f worker-field"><label for="sExp">Years of Experience</label><input id="sExp" type="number" min="0" value="1"></div>
             <div class="f worker-field"><label for="sPhone">Phone Number</label><input id="sPhone" type="tel" placeholder="077xxxxxxx"></div>
@@ -93,7 +94,8 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="app.js"></script>
+  <script src="data.js"></script>
+  <script src="signup.js"></script>
   <script>
     // JS helper to handle pill toggle state
     function selectRole(role) {
