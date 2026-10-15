@@ -94,7 +94,7 @@ function proModal(id) {
 function applyModal(id) {
   const j = S.jobs.find(x => x.id === id); if (!j) return;
   const workers = S.pros.filter(p => p.registered);
-  if (!workers.length) { openModal(`<h3>Create a profile first</h3><p>Only registered workers can apply, so we can check your trade and experience against the job.</p><a class="btn btn-primary" href="index.html#join" onclick="document.getElementById('modalBg').classList.remove('open')">Register as a worker</a>`); return; }
+  if (!workers.length) { openModal(`<h3>Create a profile first</h3><p>Only registered workers can apply, so we can check your trade and experience against the job.</p><a class="btn btn-primary" href="signup.html" onclick="document.getElementById('modalBg').classList.remove('open')">Register as a worker</a>`); return; }
   openModal(`<h3>Apply: ${esc(j.title)}</h3>
     <p class="meta">This job needs a <strong>${esc(j.trade)}</strong> in ${esc(j.location)}.</p>
     <form id="applyForm" novalidate>

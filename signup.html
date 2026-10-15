@@ -5,117 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - JobMate</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="signup.css">
 </head>
-<body>
+<body class="au-body">
+<div class="au-shell">
 
-  <!-- Top Header Navigation -->
-  <header class="auth-header">
-    <a href="index.html" class="logo">
-      <span class="mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#FBFAF7" stroke-width="2"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg>
-      </span>
-      JobMate
-    </a>
-    <nav class="auth-nav">
-      <a href="index.html#trades">Trades</a>
-      <a href="index.html#jobs">Jobs</a>
-      <a href="index.html#how">About</a>
-      <a href="login.html" class="btn-login">Log In</a>
-      <a href="signup.html" class="btn-signup">Sign Up</a>
-    </nav>
-  </header>
+  <!-- LEFT: welcome panel -->
+  <aside class="au-hero">
+    <a href="index.html" class="au-back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <div class="au-hero-inner">
+      <a href="index.html" class="logo au-logo">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#FBFAF7" stroke-width="2"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg></span>
+        JobMate
+      </a>
+      <h1>Welcome to&hellip;</h1>
+      <p>Welcome to JobMate, a trusted platform where skilled tradespeople and clients connect for real work every day.</p>
+      <div class="au-tags"><span>Mason</span><span>Electrician</span><span>Plumber</span><span>Carpenter</span><span>Painter</span></div>
+    </div>
+  </aside>
 
-  <!-- Centered Form Container -->
-  <main class="auth-container">
-    <div class="auth-card">
-      <div class="auth-card-body">
-        
-        <!-- Logo & Title Section -->
-        <div class="auth-brand">
-          <span class="mark" style="width:30px; height:30px; background:var(--ink); border-radius:4px; display:inline-flex; align-items:center; justify-content:center;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FBFAF7" stroke-width="2" width="18" height="18"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg>
-          </span>
-          <span style="font-family:'Bebas Neue'; font-size:26px; color:var(--ink); letter-spacing:0.03em;">JobMate</span>
+  <!-- RIGHT: forms -->
+  <main class="au-panel">
+    <div class="au-form-wrap">
+      <div class="au-tabs" role="tablist">
+        <button type="button" role="tab" id="tabLogin" aria-selected="false">Login</button>
+        <button type="button" role="tab" id="tabRegister" class="active" aria-selected="true">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="loginForm" hidden novalidate>
+        <h2 class="au-title">Welcome back</h2>
+        <p class="au-sub">Log in to apply for jobs or manage your postings.</p>
+        <div class="au-stack">
+          <input class="au-input" id="lEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
+          <div class="au-pw"><input class="au-input" id="lPass" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
+            <button type="button" class="au-eye" aria-label="Show password"><i class="fa-solid fa-eye"></i></button></div>
         </div>
-        
-        <h2 class="auth-title">Create your account</h2>
-        <p class="auth-subtitle">Join JobMate to connect with workers or find jobs</p>
+        <div class="au-forgot"><a href="#" id="forgotLink">Forgot Password?</a></div>
+        <div class="au-err" id="loginErr"></div>
+        <button class="au-btn" type="submit">Login</button>
+      </form>
 
-        <!-- Dynamic Role Selector (Toggle Style matching the reference design) -->
-        <div class="role-toggle">
-          <button type="button" id="btnRoleWorker" class="active" onclick="selectRole('worker')">Worker / Pro</button>
-          <button type="button" id="btnRoleClient" onclick="selectRole('client')">Client / Employer</button>
+      <!-- REGISTER -->
+      <form id="signupForm" novalidate>
+        <h2 class="au-title">Create your account</h2>
+        <p class="au-sub">Join JobMate to connect with workers or find jobs.</p>
+
+        <div class="au-roles" role="group" aria-label="Account type">
+          <button type="button" class="active" data-role="worker">Worker / Pro</button>
+          <button type="button" data-role="client">Client / Employer</button>
+        </div>
+        <input type="hidden" id="sRole" value="worker">
+
+        <div class="au-grid">
+          <input class="au-input full" id="sName" placeholder="Full name" aria-label="Full name" autocomplete="name">
+          <input class="au-input full" id="sEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
+          <div class="au-pw full"><input class="au-input" id="sPass" type="password" placeholder="Password (at least 6 characters)" aria-label="Password" autocomplete="new-password">
+            <button type="button" class="au-eye" aria-label="Show password"><i class="fa-solid fa-eye"></i></button></div>
+
+          <select class="au-input worker-field" id="sTrade" aria-label="Trade">
+            <option value="" selected disabled>Select your trade</option>
+            <option>Mason</option><option>Electrician</option><option>Plumber</option><option>Carpenter</option><option>Painter</option><option>Welder</option><option>Roofer</option><option>Landscaper</option>
+          </select>
+          <input class="au-input worker-field" id="sLoc" placeholder="Town or city" aria-label="Location">
+          <input class="au-input worker-field" id="sExp" type="number" min="0" max="60" placeholder="Years of experience" aria-label="Years of experience">
+          <input class="au-input worker-field" id="sPhone" type="tel" placeholder="Phone (077xxxxxxx)" aria-label="Phone number">
+          <input class="au-input full worker-field" id="sSkills" placeholder="Skills (comma separated, e.g. Wiring, Tiling)" aria-label="Skills">
+          <textarea class="au-input full worker-field" id="sBio" placeholder="Short bio about your experience" aria-label="Short bio"></textarea>
         </div>
 
-        <form id="signupForm" novalidate>
-          <input type="hidden" id="sRole" value="worker">
+        <div class="au-err" id="signupErr"></div>
+        <button class="au-btn" type="submit">Agree &amp; Join JobMate</button>
+      </form>
 
-          <div class="form-grid">
-            <div class="f full">
-              <label for="sName">Full Name</label>
-              <input id="sName" placeholder="e.g. Kavindu Rathnayake" required>
-            </div>
-
-            <div class="f full">
-              <label for="sEmail">Email Address</label>
-              <input id="sEmail" type="email" placeholder="you@example.com" required>
-            </div>
-
-            <div class="f full">
-              <label for="sPass">Password</label>
-              <input id="sPass" type="password" placeholder="At least 6 characters" required>
-            </div>
-
-            <!-- Conditional Fields for Workers -->
-            <div class="f worker-field"><label for="sTrade">Trade</label><select id="sTrade"><option>Mason</option><option>Electrician</option><option>Plumber</option><option>Carpenter</option><option>Painter</option><option>Welder</option><option>Roofer
-</option><option>Landscaper</option></select></div>
-            <div class="f worker-field"><label for="sLoc">Location</label><input id="sLoc" placeholder="Town or City"></div>
-            <div class="f worker-field"><label for="sExp">Years of Experience</label><input id="sExp" type="number" min="0" value="1"></div>
-            <div class="f worker-field"><label for="sPhone">Phone Number</label><input id="sPhone" type="tel" placeholder="077xxxxxxx"></div>
-            <div class="f full worker-field"><label for="sSkills">Skills (comma separated)</label><input id="sSkills" placeholder="e.g. Wiring, Tiling, Brickwork"></div>
-            <div class="f full worker-field"><label for="sBio">Short Bio / Overview</label><textarea id="sBio" placeholder="Describe your experience..."></textarea></div>
-          </div>
-
-          <div class="err" id="signupErr" style="margin-top:10px;"></div>
-
-          <button class="btn-submit" type="submit">Agree &amp; Join JobMate</button>
-
-          <p style="text-align:center; margin-top:20px; font-size:13.5px; color:var(--charcoal-soft);">
-            Already have an account? <a href="login.html" style="color:var(--steel); font-weight:700;">Sign in</a>
-          </p>
-        </form>
-
+      <div class="au-or"><span>OR</span></div>
+      <div class="au-social">
+        <button type="button" class="g" aria-label="Continue with Google"><i class="fa-brands fa-google"></i></button>
+        <button type="button" class="f" aria-label="Continue with Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+        <button type="button" class="l" aria-label="Continue with LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
       </div>
     </div>
   </main>
+</div>
 
-  <div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true"><button class="x" id="modalX" aria-label="Close">&times;</button><div id="modalBody"></div></div></div>
-  <div class="toast" id="toast" role="status"></div>
-
-  <script src="data.js"></script>
-  <script src="signup.js"></script>
-  <script>
-    // JS helper to handle pill toggle state
-    function selectRole(role) {
-      document.getElementById('sRole').value = role;
-      const workerBtn = document.getElementById('btnRoleWorker');
-      const clientBtn = document.getElementById('btnRoleClient');
-      
-      if (role === 'worker') {
-        workerBtn.classList.add('active');
-        clientBtn.classList.remove('active');
-      } else {
-        clientBtn.classList.add('active');
-        workerBtn.classList.remove('active');
-      }
-
-      document.querySelectorAll('.worker-field').forEach(el => {
-        el.style.display = (role === 'worker') ? 'block' : 'none';
-      });
-    }
-  </script>
+<div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true"><button class="x" id="modalX" aria-label="Close">&times;</button><div id="modalBody"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="data.js"></script>
+<script src="signup.js"></script>
 </body>
 </html>
