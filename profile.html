@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - JobMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-page="profile">
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#FBFAF7" stroke-width="2"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg></span>
+      JobMate
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#trades">Trades</a>
+      <a href="index.html#browse">Find a pro</a>
+      <a href="index.html#jobs">Jobs</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#reviews">Reviews</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px;" id="authNavButtons">
+      <div class="auth-nav" id="authNav"></div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main class="acct-page"><div class="wrap narrow" id="root"></div></main>
+<script src="data.js"></script>
+<script src="account.js"></script>
+</body>
+</html>

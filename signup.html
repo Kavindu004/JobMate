@@ -12,8 +12,6 @@
 </head>
 <body class="au-body">
 <div class="au-shell">
-
-  <!-- LEFT: welcome panel -->
   <aside class="au-hero">
     <a href="index.html" class="au-back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
     <div class="au-hero-inner">
@@ -27,18 +25,16 @@
     </div>
   </aside>
 
-  <!-- RIGHT: forms -->
   <main class="au-panel">
     <div class="au-form-wrap">
-      <div class="au-tabs" role="tablist">
+      <div class="au-tabs" id="tabs" role="tablist">
         <button type="button" role="tab" id="tabLogin" aria-selected="false">Login</button>
         <button type="button" role="tab" id="tabRegister" class="active" aria-selected="true">Register</button>
       </div>
 
-      <!-- LOGIN -->
       <form id="loginForm" hidden novalidate>
         <h2 class="au-title">Welcome back</h2>
-        <p class="au-sub">Log in to apply for jobs or manage your postings.</p>
+        <p class="au-sub">Log in to apply for jobs, post jobs or manage your profile.</p>
         <div class="au-stack">
           <input class="au-input" id="lEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
           <div class="au-pw"><input class="au-input" id="lPass" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
@@ -49,21 +45,19 @@
         <button class="au-btn" type="submit">Login</button>
       </form>
 
-      <!-- REGISTER -->
       <form id="signupForm" novalidate>
-        <h2 class="au-title">Create your account</h2>
-        <p class="au-sub">Join JobMate to connect with workers or find jobs.</p>
-
-        <div class="au-roles" role="group" aria-label="Account type">
+        <h2 class="au-title" id="regTitle">Create your account</h2>
+        <p class="au-sub" id="regSub">One account works for both finding work and hiring. You can add the other role later.</p>
+        <div class="au-roles acct-field" role="group" aria-label="I want to">
           <button type="button" class="active" data-role="worker">Worker / Pro</button>
           <button type="button" data-role="client">Client / Employer</button>
         </div>
         <input type="hidden" id="sRole" value="worker">
-
         <div class="au-grid">
-          <input class="au-input full" id="sName" placeholder="Full name" aria-label="Full name" autocomplete="name">
-          <input class="au-input full" id="sEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
-          <div class="au-pw full"><input class="au-input" id="sPass" type="password" placeholder="Password (at least 6 characters)" aria-label="Password" autocomplete="new-password">
+          <input class="au-input acct-field" id="sFirst" placeholder="First name" aria-label="First name" autocomplete="given-name">
+          <input class="au-input acct-field" id="sLast" placeholder="Last name" aria-label="Last name" autocomplete="family-name">
+          <input class="au-input full acct-field" id="sEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
+          <div class="au-pw full acct-field"><input class="au-input" id="sPass" type="password" placeholder="Password (at least 6 characters)" aria-label="Password" autocomplete="new-password">
             <button type="button" class="au-eye" aria-label="Show password"><i class="fa-solid fa-eye"></i></button></div>
 
           <select class="au-input worker-field" id="sTrade" aria-label="Trade">
@@ -75,24 +69,25 @@
           <input class="au-input worker-field" id="sPhone" type="tel" placeholder="Phone (077xxxxxxx)" aria-label="Phone number">
           <input class="au-input full worker-field" id="sSkills" placeholder="Skills (comma separated, e.g. Wiring, Tiling)" aria-label="Skills">
           <textarea class="au-input full worker-field" id="sBio" placeholder="Short bio about your experience" aria-label="Short bio"></textarea>
-        </div>
 
+          <input class="au-input client-field" id="cPhone" type="tel" placeholder="Phone (optional)" aria-label="Phone number" hidden>
+          <input class="au-input client-field" id="cLoc" placeholder="Town or city (optional)" aria-label="Location" hidden>
+        </div>
         <div class="au-err" id="signupErr"></div>
-        <button class="au-btn" type="submit">Agree &amp; Join JobMate</button>
+        <button class="au-btn" type="submit" id="regBtn">Agree &amp; Join JobMate</button>
       </form>
 
-      <div class="au-or"><span>OR</span></div>
-      <div class="au-social">
-        <button type="button" class="g" aria-label="Continue with Google"><i class="fa-brands fa-google"></i></button>
-        <button type="button" class="f" aria-label="Continue with Facebook"><i class="fa-brands fa-facebook-f"></i></button>
-        <button type="button" class="l" aria-label="Continue with LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+      <div id="orArea">
+        <div class="au-or"><span>OR</span></div>
+        <div class="au-social">
+          <button type="button" class="g" aria-label="Continue with Google"><i class="fa-brands fa-google"></i></button>
+          <button type="button" class="f" aria-label="Continue with Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+          <button type="button" class="l" aria-label="Continue with LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+        </div>
       </div>
     </div>
   </main>
 </div>
-
-<div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true"><button class="x" id="modalX" aria-label="Close">&times;</button><div id="modalBody"></div></div></div>
-<div class="toast" id="toast" role="status"></div>
 <script src="data.js"></script>
 <script src="signup.js"></script>
 </body>

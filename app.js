@@ -1,6 +1,7 @@
 (() => {
 if (!document.getElementById('proGrid')) return; // other pages (e.g. signup.html) do not have the home sections
-const {S, save, TRADES, $, esc, uid, toast, stars, rup, proCard, jobCard, moreTile} = JM;
+const {S, save, TRADES, $, esc, uid, toast, openModal, stars, rup, proCard, jobCard, moreTile} = JM;
+const DRAFT = ['jTitle','jTradeSel','jLoc','jBudget','jDesc'];
 const f = {trade:'', loc:'', sort:'rating'};
 let jobTradeFilter = '';
 
@@ -58,15 +59,33 @@ $('jobTrade').onchange = e => { jobTradeFilter = e.target.value; renderJobs(); }
 
 $('jobForm').onsubmit = e => {
   e.preventDefault();
-  const v = id => $(id).value.trim(); const err = m => { $('jobErr').textContent = m; };
-  if (!v('jTitle') || !v('jLoc') || !v('jName') || !v('jContact') || !v('jDesc')) return err('Fill in the title, location, your name, contact details and job details.');
-  S.jobs.unshift({id:uid(), title:v('jTitle'), trade:$('jTradeSel').value, location:v('jLoc'), budget:+$('jBudget').value || 0, name:v('jName'), contact:v('jContact'), desc:v('jDesc'), apps:[], hired:null});
-  save(); e.target.reset(); err(''); jobTradeFilter = ''; $('jobTrade').value = ''; renderJobs(); toast('Job posted. Matching workers can now apply.');
+  const v = id => $(id).value.trim(), err = m => { $('jobErr').textContent = m; };
+  const u = JM.me();
+  if (!JM.has(u, 'client')) {          // must be registered as a client to post a job
+    S.draft = Object.fromEntries(DRAFT.map(k => [k, $(k).value])); save();
+    const url = JM.signupUrl(u ? {add:'client', next:'index.html#jobs'} : {role:'client', next:'index.html#jobs'});
+    openModal(`<h3>Register as a Client</h3><p>${u ? 'Your account is not registered as a client yet.' : 'You need a client account to post a job.'} Your job details are saved and will be here when you come back.</p>
+      <a class="btn btn-primary" href="${url}">Register as a Client</a>
+      ${u ? '' : '<p class="meta" style="margin-top:14px">Already registered? <a href="login.html?next=index.html%23jobs" style="color:var(--steel);font-weight:700">Login</a></p>'}`);
+    return;
+  }
+  if (!v('jTitle') || !v('jLoc') || !v('jDesc')) return err('Fill in the title, location and job details.');
+  S.jobs.unshift({id:uid(), title:v('jTitle'), trade:$('jTradeSel').value, location:v('jLoc'), budget:+$('jBudget').value || 0, name:JM.fullName(u), contact:u.phone || u.email, desc:v('jDesc'), ownerId:u.id, apps:[], hired:null});
+  S.draft = null; save(); e.target.reset(); err(''); jobTradeFilter = ''; $('jobTrade').value = ''; renderJobs(); toast('Job posted. Matching workers can now apply.');
+};
+
+$('joinBtn').onclick = e => {
+  e.preventDefault();
+  const u = JM.me();
+  if (JM.has(u, 'worker')) { toast('You already have a worker profile.'); $('browse').scrollIntoView({behavior:'smooth'}); return; }
+  location.href = JM.signupUrl(u ? {add:'worker', next:'index.html#browse'} : {role:'worker', next:'index.html#browse'});
 };
 
 /* reveal on scroll */
 const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), {threshold:.1}) : null;
 document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
 
+// coming back from registering as a client: restore the job details they had typed
+if (JM.has(JM.me(), 'client') && S.draft) { DRAFT.forEach(k => { if (S.draft[k]) $(k).value = S.draft[k]; }); S.draft = null; save(); toast('You are registered as a client. Your job is ready to post.'); }
 renderAll();
 })();

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=signup.html?tab=login">
 <title>Login - JobMate</title>
+<script>location.replace('signup.html?tab=login' + (location.search ? '&' + location.search.slice(1) : ''));</script>
+<noscript><meta http-equiv="refresh" content="0; url=signup.html?tab=login"></noscript>
 </head>
 <body><a href="signup.html?tab=login">Continue to login</a></body>
 </html>

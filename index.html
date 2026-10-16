@@ -26,9 +26,7 @@
       <a href="#reviews">Reviews</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px;" id="authNavButtons">
-      <!-- Dynamically managed by JavaScript based on login state -->
-      <a href="login.html" class="btn btn-outline nav-cta">Login</a>
-      <a href="signup.html" class="btn btn-primary nav-cta">Sign Up</a>
+      <div class="auth-nav" id="authNav"></div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -251,8 +249,6 @@
           <div class="f"><label for="jTrade">Trade needed</label><select id="jTradeSel"></select></div>
           <div class="f"><label for="jLoc">Location</label><input id="jLoc" placeholder="Town or postcode"></div>
           <div class="f"><label for="jBudget">Budget (Rs.)</label><input id="jBudget" type="number" min="0" placeholder="25000"></div>
-          <div class="f"><label for="jName">Your name</label><input id="jName"></div>
-          <div class="f full"><label for="jContact">Phone or email</label><input id="jContact"></div>
           <div class="f full"><label for="jDesc">Details</label><textarea id="jDesc" placeholder="Scope, timeline, anything the worker should know"></textarea></div>
         </div>
         <div class="err" id="jobErr"></div>
