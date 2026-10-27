@@ -1,4 +1,7 @@
-(() => {
+// Search + location filter for all-pros.html and all-jobs.html (filters on the same page, no reloads).
+JM.ready.then(ok => { if (ok) start(); });
+
+function start() {
 const {S, $, esc, proCard, jobCard, setRerender} = JM;
 const isPros = document.body.dataset.page === 'pros';
 const params = new URLSearchParams(location.search);
@@ -22,4 +25,4 @@ $('loc').addEventListener('input', render);
 $('listForm').addEventListener('submit', e => e.preventDefault());
 setRerender(render);
 render();
-})();
+}

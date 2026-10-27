@@ -282,9 +282,9 @@
     padding-top: 15px;
   }
   /* ---------- COMPLETED FEATURES ---------- */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
-.reveal.in{opacity:1;transform:none;}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+.js-reveal .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
+.js-reveal .reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.js-reveal .reveal{opacity:1;transform:none;transition:none;}}
 .section-head.left{justify-content:space-between;text-align:left;}
 .filter-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px;}
 .pill{padding:8px 16px;border-radius:20px;border:1.5px solid var(--line);background:var(--paper);font-size:13px;font-weight:600;color:var(--charcoal-soft);}
@@ -428,3 +428,6 @@
 .faq summary{font-weight:700;cursor:pointer;color:var(--ink);}
 .faq p{margin:10px 0 0;color:var(--charcoal-soft);line-height:1.6;font-size:14.5px;}
 @media(max-width:600px){.prof-grid{grid-template-columns:1fr;}.user-dd{position:fixed;left:12px;right:12px;top:66px;width:auto;max-width:none;}}
+
+/* ---------- SERVER ERROR BANNER ---------- */
+.server-error{background:#b3261e;color:#fff;padding:12px 20px;text-align:center;font-size:14px;font-weight:600;position:sticky;top:0;z-index:400;}
