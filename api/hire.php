@@ -1,0 +1,13 @@
+<?php require __DIR__ . '/config.php';
+$u = require_login();
+$d = body();
+$jid = (int)($d['jobId'] ?? 0); $wid = (int)($d['proId'] ?? 0);
+$s = $pdo->prepare('SELECT owner_id, hired_worker_id FROM jobs WHERE id = ?'); $s->execute([$jid]);
+$job = $s->fetch();
+if (!$job) fail('Job not found.', 404);
+if ((int)$job['owner_id'] !== (int)$u['id']) fail('Only the person who posted the job can hire.', 403);
+if ($job['hired_worker_id']) fail('You have already chosen someone for this job.');
+$s = $pdo->prepare('SELECT 1 FROM applications WHERE job_id = ? AND worker_id = ?'); $s->execute([$jid, $wid]);
+if (!$s->fetchColumn()) fail('That worker has not applied to this job.');
+$pdo->prepare('UPDATE jobs SET hired_worker_id = ? WHERE id = ?')->execute([$wid, $jid]);
+out(['ok' => true]);

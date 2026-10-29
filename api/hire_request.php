@@ -1,0 +1,11 @@
+<?php require __DIR__ . '/config.php';
+$u = require_login();
+$d = body();
+$wid = (int)($d['proId'] ?? 0); $msg = str($d, 'message', 1000);
+if ($msg === '') fail('Describe what you need done.');
+$s = $pdo->prepare('SELECT user_id FROM worker_profiles WHERE id = ?'); $s->execute([$wid]);
+$w = $s->fetch();
+if (!$w) fail('Worker not found.', 404);
+if ((int)$w['user_id'] === (int)$u['id']) fail('You cannot send a request to yourself.', 403);
+$pdo->prepare('INSERT INTO hire_requests (worker_id, from_user_id, message) VALUES (?,?,?)')->execute([$wid, $u['id'], $msg]);
+out(['ok' => true], 201);
