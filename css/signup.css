@@ -70,3 +70,11 @@ select.au-input{appearance:auto;}
   .au-panel{padding:36px 20px 56px;}
 }
 @media(max-width:480px){.au-grid{grid-template-columns:1fr;}}
+
+@media(max-width:600px){
+  .au-input{font-size:16px !important;}
+  .au-tabs button{padding-right:20px;margin-right:20px;}
+  .au-back{top:14px;left:14px;padding:8px 14px;font-size:13px;}
+  .au-hero{padding:68px 20px 30px;}
+  .au-btn{height:52px;}
+}

@@ -208,6 +208,36 @@ $('modalX').onclick = closeModal;
 $('modalBg').onclick = e => { if (e.target === $('modalBg')) closeModal(); };
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDd(); } });
 
+/* "Everything You Need on JobMate" cards: arrow buttons + progress bar for the swipe row (narrow screens only) */
+(function featureScroller() {
+  const track = document.querySelector('.feature-grid'); if (!track) return;
+  const box = document.createElement('div'); box.className = 'feature-scroll';
+  track.parentNode.insertBefore(box, track); box.appendChild(track);
+  box.insertAdjacentHTML('beforeend', '<div class="fs-controls"><div class="fs-bar" aria-hidden="true"><i></i></div><button type="button" class="fs-btn prev" aria-label="Scroll features left"><span aria-hidden="true">&lsaquo;</span></button><button type="button" class="fs-btn next" aria-label="Scroll features right"><span aria-hidden="true">&rsaquo;</span></button></div>');
+  track.tabIndex = 0; track.setAttribute('role', 'region'); track.setAttribute('aria-label', 'Platform features');
+  const prev = box.querySelector('.prev'), next = box.querySelector('.next'), bar = box.querySelector('.fs-bar i');
+  const step = () => { const c = track.querySelector('.feature-card'); return c ? c.getBoundingClientRect().width + 16 : 280; };
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = track.scrollWidth - track.clientWidth;
+    const scrollable = max > 4;
+    box.classList.toggle('is-scrollable', scrollable);
+    if (!scrollable) return;
+    const ratio = track.clientWidth / track.scrollWidth, progress = Math.min(1, Math.max(0, track.scrollLeft / max));
+    bar.style.width = (ratio * 100) + '%';
+    bar.style.transform = 'translateX(' + (progress * (1 / ratio - 1) * 100) + '%)';
+    prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft >= max - 2;
+  };
+  const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  prev.onclick = () => track.scrollBy({left: -step(), behavior: 'smooth'});
+  next.onclick = () => track.scrollBy({left: step(), behavior: 'smooth'});
+  track.addEventListener('scroll', queue, {passive: true});
+  window.addEventListener('resize', queue);
+  window.addEventListener('load', queue);
+  update();
+})();
+
 /* fade-in on scroll. Content is never hidden if this fails: everything is shown when the server or a page script fails. */
 const revealEls = [...document.querySelectorAll('.reveal')];
 const revealAll = () => revealEls.forEach(el => el.classList.add('in'));
